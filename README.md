@@ -12,19 +12,21 @@ npm install @getsigil/core
 
 ## Usage
 
-### Automatic (Recommended)
+### Automatic (Default)
 
-When using the Sigil executor with `--auto-mark`, this library is injected automatically via CDP. No installation required.
+The Sigil executor automatically injects this library via CDP. No installation required.
 
 ```bash
-sigil run test.sigil --address http://localhost:3000 --auto-mark
+sigil run test.sigil --address http://localhost:3000
 ```
 
-In auto mode, elements with `data-sigil-id` attributes are still observed and prioritized over auto-generated IDs, giving you explicit control when needed.
+Elements with `data-sigil-id` attributes are observed and prioritized over auto-generated IDs, giving you explicit control when needed.
+
+Use `--no-inject` to disable automatic script injection if you prefer manual integration.
 
 ### Manual Integration
 
-For explicit control over which elements get markers:
+For projects using `--no-inject`, or when you need markers without the executor:
 
 ```javascript
 import { Sigil } from '@getsigil/core';
@@ -45,7 +47,7 @@ Then add `data-sigil-id` attributes to elements you want to mark:
 
 ### Auto-Discovery
 
-Automatically discover and mark all interactive elements:
+For recording scripts interactively (not typical for most automation workflows):
 
 ```javascript
 import { Sigil } from '@getsigil/core';
