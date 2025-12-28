@@ -20,7 +20,7 @@ The Sigil executor automatically injects this library via CDP. No installation r
 sigil run test.sigil --address http://localhost:3000
 ```
 
-Elements with `data-sigil-id` attributes are observed and prioritized over auto-generated IDs, giving you explicit control when needed.
+Elements with `sig`, `data-sigil-id`, or `data-testid` attributes are observed and prioritized over auto-generated IDs, giving you explicit control when needed.
 
 Use `--no-inject` to disable automatic script injection if you prefer manual integration.
 
@@ -38,12 +38,14 @@ Sigil.init({
 });
 ```
 
-Then add `data-sigil-id` attributes to elements you want to mark:
+Then add attributes to elements you want to mark:
 
 ```html
-<button data-sigil-id="submit-btn">Submit</button>
-<input data-sigil-id="email-input" type="email" />
+<button sig="submit-btn">Submit</button>
+<input sig="email-input" type="email" />
 ```
+
+Supported attributes (in priority order): `sig`, `data-sigil-id`, `data-testid`.
 
 ### Auto-Discovery
 
@@ -71,11 +73,11 @@ interface SigilConfig {
 
 ### `Sigil.scan(root?)`
 
-Scan DOM for `data-sigil-id` elements and add markers. Called automatically on init.
+Scan DOM for elements with `sig`, `data-sigil-id`, or `data-testid` attributes and add markers. Called automatically on init.
 
 ### `Sigil.autoDiscover()`
 
-Auto-discover interactive elements and generate `data-sigil-id` attributes.
+Auto-discover interactive elements and generate IDs for unmarked elements.
 
 ### `Sigil.show()` / `Sigil.hide()`
 
@@ -102,7 +104,7 @@ function App() {
   }, []);
 
   return (
-    <button data-sigil-id="submit">Submit</button>
+    <button sig="submit">Submit</button>
   );
 }
 ```
@@ -124,7 +126,7 @@ onUnmounted(() => Sigil.dispose());
 </script>
 
 <template>
-  <button data-sigil-id="submit">Submit</button>
+  <button sig="submit">Submit</button>
 </template>
 ```
 
@@ -136,12 +138,12 @@ onUnmounted(() => Sigil.dispose());
   Sigil.init({ enabled: true });
 </script>
 
-<button data-sigil-id="submit">Submit</button>
+<button sig="submit">Submit</button>
 ```
 
 ## How It Works
 
-Sigil renders small colored glyph markers on elements with `data-sigil-id` attributes. Each marker encodes the element's ID using a unique color pattern that the Sigil executor can detect via screenshot analysis - no DOM access required.
+Sigil renders small colored glyph markers on elements with `sig`, `data-sigil-id`, or `data-testid` attributes. Each marker encodes the element's ID using a unique color pattern that the Sigil executor can detect via screenshot analysis - no DOM access required.
 
 This enables reliable UI automation that works with any web framework, including those with shadow DOM, iframes, or complex rendering.
 
