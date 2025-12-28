@@ -63,9 +63,6 @@ Initialize the marker system.
 ```typescript
 interface SigilConfig {
   enabled?: boolean;      // Enable/disable markers (default: true)
-  position?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
-  zIndex?: number;        // Z-index for markers (default: 9999)
-  opacity?: number;       // Marker opacity 0-1 (default: 1)
   wsPort?: number;        // WebSocket port for executor (default: 5050)
 }
 ```
