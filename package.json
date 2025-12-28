@@ -1,0 +1,53 @@
+{
+  "name": "@getsigil/core",
+  "version": "0.1.0",
+  "description": "Visual markers for automated UI testing - zero-config browser automation",
+  "author": "Iridium Softworks",
+  "license": "MIT",
+  "homepage": "https://usesigil.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iridium-softworks/sigil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iridium-softworks/sigil/issues"
+  },
+  "keywords": [
+    "testing",
+    "ui-testing",
+    "automation",
+    "browser-automation",
+    "visual-testing",
+    "markers",
+    "e2e",
+    "end-to-end"
+  ],
+  "type": "module",
+  "main": "./dist/sigil.cjs",
+  "module": "./dist/sigil.js",
+  "types": "./dist/sigil.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/sigil.js",
+      "require": "./dist/sigil.cjs",
+      "types": "./dist/sigil.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup src/sigil.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/sigil.ts --format cjs,esm --dts --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
