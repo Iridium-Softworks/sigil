@@ -20,6 +20,8 @@ When using the Sigil executor with `--auto-mark`, this library is injected autom
 sigil run test.sigil --address http://localhost:3000 --auto-mark
 ```
 
+In auto mode, elements with `data-sigil-id` attributes are still observed and prioritized over auto-generated IDs, giving you explicit control when needed.
+
 ### Manual Integration
 
 For explicit control over which elements get markers:
